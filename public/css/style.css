@@ -97,3 +97,12 @@ textarea {
 #storyStatus {
   display: none;
 }
+.container-titulo-section-stories-user {
+  padding-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+.container-img-perfil img {
+  border-radius: 100%;
+}
