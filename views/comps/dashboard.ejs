@@ -1,0 +1,41 @@
+<div class="container-dashboard">
+  <h3>Bienvenid@ </h3>
+  <%- include("btnAdd")%>
+
+  <% if (stories.length > 0) { %>
+  <p>Estas son tus historias</p>
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% stories.forEach(Story => { %>
+      <tr>
+        <td><a href="/stories/<%= Story._id %> "></a> <%= Story.title %> </td>
+        <td> <%= Story.createAdAt %> </td>
+        <td><span class="dash-status"> <%= Story.status %> </span> </td>
+        <td> <a class="btn-floating btn-large waves-effect waves-light btn-editar-in-dashboard" href="/stories/edit/<%= Story._id %>">
+            <i class=" material-icons">edit</i>
+          </a>
+        </td>
+        <td>
+          <a class="btn-floating btn-large waves-effect waves-light btn-eliminar-in-dashboard red" href="/stories/delete/<%= Story._id %>">
+            <i class=" material-icons">delete</i>
+          </a>
+        </td>
+      </tr>
+      <%- include("btnAdd")%>
+
+      <% }) %>
+    </tbody>
+  </table>
+  <% } else { %>
+  <p>Aún no tenés ninguna historia creada</p>
+  <% } %>
+</div>

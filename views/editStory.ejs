@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./comps/head") %>
+
+
+<body>
+
+  <%- include("./comps/navbar") %>
+
+  <div class="container-editar-story">
+    <h4>Editar historia <%= uniqueStory.title %></h4>
+    <div class="row">
+      <form action="/stories/guardarEdit" method="POST" class="col s12">
+
+        <!-- uniqueStory -->
+
+        <div class="row">
+          <div class="input-field">
+            <input type="text" id="title" name="title" value="<%= uniqueStory.title %>">
+            <label for="title">Título</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field">
+            <p>(Si no seleccionas otro estado esta historia se mantendrá como <span id="estadoDeHistoria"></span>)</p>
+            <select name="status" id="status">
+              <option value="public" id="public">Pública</option>
+              <option value="private" id="private">Privada</option>
+            </select>
+            <label for="title">Estado</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field">
+            <h5>Contanos...</h5>
+            <textarea name="body" id="body">
+                <%= uniqueStory.body %>
+            </textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field">
+            <input type="hidden" id="id" name="id" value="<%= uniqueStory._id %>">
+          </div>
+        </div>
+
+        <div class="row">
+          <input type="submit" value="guardar" class="btn">
+          <a href="/dashboard" class="btn orange">Cancelar</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <p id="storyStatus"><%= uniqueStory.status %></p>
+
+
+  <%- include("./comps/scriptsMat.ejs") %>
+
+  <script>
+    const privateOpt = document.getElementById("private")
+    const publicOpt = document.getElementById("public")
+    const storyStatus = document.getElementById("storyStatus")
+    const estadoDeHistoria = document.getElementById("estadoDeHistoria")
+    if (storyStatus.innerText === "private") {
+      privateOpt.classList.add("selected")
+      publicOpt.classList.remove("selected")
+      estadoDeHistoria.innerText = "Privada"
+    } else {
+      privateOpt.classList.remove("selected")
+      publicOpt.classList.add("selected")
+      estadoDeHistoria.innerText = "Privada"
+    }
+  </script>
+
+</body>
+
+</html>

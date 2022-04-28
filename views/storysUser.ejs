@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./comps/head") %>
+
+<body>
+
+  <%-include("./comps/navbar")%>
+
+  <div class="row container-stories-author">
+    <h4>Historias de <%= stories[0].name %></h4>
+    <% stories.forEach(story => { %>
+    <div class="col s12 m4">
+      <div class="card">
+        <div class=" card-image">
+        </div>
+        <div class="card-content center-align container-story">
+          <h5> <%=story.title%> </h5>
+          <p class="body-story"> <%= story.body %> </p>
+          <br>
+          <div class="chip">
+            <img src="<%= story.image %>" alt="">
+            <a href="/stories/user/ <%= story.user._id %> "> <%= story.name %> </a>
+          </div>
+        </div>
+        <div class="card-action center-align">
+          <a href="/stories/<%= story._id %>" class="btn grey">Leer más...</a>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+
+  <%- include("./comps/scriptsMat.ejs") %>
+</body>
+
+</html>

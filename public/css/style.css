@@ -1,0 +1,99 @@
+p {
+  margin: 10px 0 !important;
+}
+.login-container {
+  width: 400px;
+  margin-top: 50px;
+  text-align: center;
+}
+.container-dashboard {
+  max-width: 68%;
+  margin: 0 auto;
+}
+textarea {
+  resize: none;
+  resize: vertical;
+  height: 150px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.body-story {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card {
+  position: relative;
+}
+.btn-editar {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+.btn-editar:hover {
+  opacity: 1;
+  transition: 0.3s;
+}
+.btn-eliminar {
+  position: absolute;
+  bottom: 6px;
+  right: 20px;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+.btn-eliminar:hover {
+  opacity: 1;
+  transition: 0.3s;
+}
+.btn-editar-in-dashboard {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+.btn-editar-in-dashboard:hover {
+  opacity: 1;
+  transition: 0.3s;
+}
+.btn-eliminar-in-dashboard {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+.btn-eliminar-in-dashboard:hover {
+  opacity: 1;
+  transition: 0.3s;
+}
+.btn-add {
+  opacity: 0.4;
+  transition: 0.3s;
+}
+.btn-add:hover {
+  opacity: 1;
+  transition: 0.3s;
+}
+.container-all-stories {
+  width: 90%;
+  padding-top: 20px;
+}
+.container-unique-story {
+  width: 68%;
+  margin: 0 auto;
+}
+.container-links-unique-story {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.container-editar-story {
+  width: 68%;
+  margin: 0 auto;
+}
+.container-stories-author {
+  width: 68%;
+  margin: 0 auto;
+}
+#storyStatus {
+  display: none;
+}

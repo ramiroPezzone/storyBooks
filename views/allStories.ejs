@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./comps/head") %>
+
+<body>
+
+  <%-include("./comps/navbar")%>
+
+  <div class="row container-all-stories">
+    <% if (stories.length > 0) { %>
+    <% stories.forEach(story => { %>
+    <div class="col s12 m4">
+      <div class="card">
+
+        <% if (uniqueId == story.user) { %>
+        <a class="btn-floating btn-large waves-effect waves-light btn-editar" href="/stories/edit/<%= story._id %>">
+          <i class=" material-icons">edit</i>
+        </a>
+        <% } %>
+        <% if (uniqueId == story.user) { %>
+        <a class="btn-floating btn-large waves-effect waves-light btn-eliminar red" href="/stories/delete/<%= story._id %>">
+          <i class=" material-icons">delete</i>
+        </a>
+        <% } %>
+
+        <div class=" card-image">
+        </div>
+        <div class="card-content center-align container-story">
+          <h5> <%=story.title%> </h5>
+          <p class="body-story"> <%= story.body %> </p>
+          <br>
+          <div class="chip">
+            <img src="<%= story.image %>" alt="">
+            <a href="/stories/user/ <%= story.user._id %> "> <%= story.name %> </a>
+          </div>
+        </div>
+        <div class="card-action center-align">
+          <a href="/stories/<%= story._id %>" class="btn grey">Leer más...</a>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+    <% } else { %>
+    <p>Aún no hay historias que mostrar</p>
+    <% } %>
+
+  </div>
+
+  <%- include("comps/btnAdd")%>
+
+
+  <%- include("./comps/scriptsMat.ejs") %>
+</body>
+
+</html>

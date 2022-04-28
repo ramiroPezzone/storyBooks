@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./comps/head") %>
+
+<body>
+
+  <%- include("./comps/navbar") %>
+
+  <div class="container-unique-story">
+    <h4>Autor: <%= story.name%></h4>
+    <div class="row container-story-and-title">
+      <div class="col">
+        <div class="card-panel teal">
+          <h5>Título: <%= story.title %></h5>
+          <span class="white-text">
+            <%= story.body %>
+          </span>
+        </div>
+        <div class="container-links-unique-story">
+          <a href="/stories">Volver a Historias</a>
+          <a href="/stories/user/<%= story.user %>">Ver más de <%=story.name%></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include("./comps/scriptsMat.ejs") %>
+</body>
+
+</html>
