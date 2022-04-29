@@ -108,11 +108,12 @@ textarea {
 }
 
 .grid-container-all-stories {
+  width: 68%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
-  padding: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 10px 0;
+  margin: 0 auto;
 }
 .grid-item-all-stories {
   padding: 5px;
 }
-
