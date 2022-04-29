@@ -4,8 +4,6 @@ const { ensureGuest, ensureAuth } = require("../middleware/auth");
 const Story = require("../models/stories");
 const path = require("path");
 const User = require("../models/user");
-const { json } = require("express/lib/response");
-const { LOADIPHLPAPI } = require("dns");
 
 // @desc    Login/Landing page
 // @route   GET /
@@ -17,9 +15,10 @@ router.get("/", ensureGuest, (req, res) => {
 // @route   GET /dashboard
 router.get("/dashboard", ensureAuth, async (req, res) => {
   try {
+    const user = req.user;
     const stories = await Story.find({ user: req.user.id }).lean();
     res.render("dashboard.ejs", {
-      name: req.user.firstName,
+      user,
       stories,
     });
   } catch (err) {
