@@ -1,5 +1,9 @@
 <div class="container-dashboard">
-  <h3>Bienvenid@ <%= stories[0].name %></h3>
+  <h3>Bienvenid@
+    <% if (stories[0].name !== undefined) { %>
+    <%= stories[0].name %>
+    <% } %>
+  </h3>
   <%- include("btnAdd")%>
 
   <% if (stories.length > 0) { %>
