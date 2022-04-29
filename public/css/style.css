@@ -106,3 +106,13 @@ textarea {
 .container-img-perfil img {
   border-radius: 100%;
 }
+
+.grid-container-all-stories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+  padding: 10px;
+}
+.grid-item-all-stories {
+  padding: 5px;
+}
+

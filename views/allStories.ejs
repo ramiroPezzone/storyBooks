@@ -7,12 +7,11 @@
 
   <%-include("./comps/navbar")%>
 
-  <div class="row container-all-stories">
+  <div class="grid-container-all-stories">
     <% if (stories.length > 0) { %>
     <% stories.forEach(story => { %>
-    <div class="col s12 m4">
+    <div class="grid-item-all-stories">
       <div class="card">
-
         <% if (uniqueId == story.user) { %>
         <a class="btn-floating btn-large waves-effect waves-light btn-editar" href="/stories/edit/<%= story._id %>">
           <i class=" material-icons">edit</i>
@@ -44,6 +43,7 @@
     <% } else { %>
     <p>Aún no hay historias que mostrar</p>
     <% } %>
+  </div>
 
   </div>
 
