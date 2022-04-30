@@ -8,19 +8,38 @@
   <%- include("./comps/navbarSecondary") %>
 
   <div class="container-unique-story">
-    <h4>Autor: <%= story.name%></h4>
+    <div class="container-title-unique-story">
+      <h4 class="author-unique-story">Autor:
+        <a href="/stories/user/<%= story.user %>" title="Ver más historias de <%= story.name %>">
+          <%= story.name%>
+        </a>
+      </h4>
+      <div class="container-img-perfil">
+        <img src="<%= story.image %>" alt="">
+      </div>
+    </div>
+
     <div class="row container-story-and-title">
-      <div class="col">
+      <div class="">
         <div class="card-panel teal">
           <h5>Título: <%= story.title %></h5>
           <span class="white-text">
             <%= story.body %>
           </span>
         </div>
-        <div class="container-links-unique-story">
-          <a href="/stories">Volver a Historias</a>
-          <a href="/stories/user/<%= story.user %>">Ver más de <%=story.name%></a>
+        <div class="container-btn-responder">
+          <%- include("./comps/btnResponder.ejs") %>
         </div>
+        <div class="container-form-responder">
+          <%- include("./comps/formResponder.ejs") %>
+        </div>
+
+        <div class="container-contador-de-comentarios">
+          <h5>Comentarios:</h5>
+          <h6>(<%= respuestas.length %>)</h6>
+        </div>
+        <%- include("./comps/visualizadorDeRespuestas.ejs") %>
+
       </div>
     </div>
   </div>

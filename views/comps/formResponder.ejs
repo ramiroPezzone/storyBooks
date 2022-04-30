@@ -1,0 +1,16 @@
+<form action="/respuesta" method="POST">
+  <div class="input-field">
+    <h5>Tu respuesta...</h5>
+    <textarea name="bodyRespuesta" id="bodyRespuesta" autofocus></textarea>
+  </div>
+
+  <div class="container-btns-add-story">
+    <input type="submit" value="enviar" class="btn">
+    <input type="button" value="Cancelar" class="btn orange btn-cancelar-responder">
+  </div>
+
+  <input type="hidden" name="storyId" value=<%= story._id %>>
+  <input type="hidden" name="idUser" value=<%= user._id %>>
+
+
+</form>

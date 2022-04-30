@@ -1,0 +1,36 @@
+<% respuestas.forEach(resp => { %>
+
+<div class="container-respuestas">
+  <div class="container-title-unique-story">
+    <h5>De:
+      <a href="/stories/user/<%= resp.idUser %>" title="Ver más historias de <%= resp.user %>">
+        <%= resp.user%>
+      </a>
+    </h5>
+    <div class="container-img-perfil-respuestas">
+      <img src="<%= resp.image %>" alt="">
+    </div>
+  </div>
+  <div class="row container-story-and-title">
+    <div class="card-panel card-respuesta">
+      <div class="container-btn-eliminar-respuesta">
+
+        <% if (resp.idUser == user._id) { %>
+        <a class="btn-floating btn-large waves-effect waves-light red btn-eliminar-en-respuestas" href="/respuestas/delete/<%= resp._id %>">
+          <i class=" material-icons">delete</i>
+        </a>
+        <% } %>
+
+      </div>
+      <span class="container-body-respuesta">
+        <%= resp.bodyRespuesta %>
+      </span>
+    </div>
+    <div class="container-fecha-respuesta">
+      <p>
+        <%= resp.createAdAt %>
+      </p>
+    </div>
+  </div>
+</div>
+<% }) %>

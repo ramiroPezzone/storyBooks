@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ensureGuest, ensureAuth } = require("../middleware/auth");
 const Story = require("../models/stories");
+const Respuesta = require("../models/respuestas");
 const path = require("path");
 const User = require("../models/user");
 
@@ -15,11 +16,17 @@ router.get("/", ensureGuest, (req, res) => {
 // @route   GET /dashboard
 router.get("/dashboard", ensureAuth, async (req, res) => {
   try {
-    const user = req.user;
-    const stories = await Story.find({ user: req.user.id }).lean();
+    let allStories = await Story.find({});
+    let stories = await Story.find({ user: req.user.id }).lean();
+    let allUsers = await User.find({});
+    let user = req.user;
+    let respuestas = await Respuesta.find({ idUser: user._id });
     res.render("dashboard.ejs", {
       user,
       stories,
+      respuestas,
+      allStories,
+      allUsers,
     });
   } catch (err) {
     console.error(err);
@@ -57,10 +64,23 @@ router.get("/stories/edit/:id", ensureAuth, async (req, res) => {
 // @route   GET /delete/:id
 router.get("/stories/delete/:id", ensureAuth, async (req, res) => {
   try {
-    const uniqueStory = await Story.findByIdAndDelete({
+    await Story.findByIdAndDelete({
       _id: req.params.id,
     });
     res.redirect("/stories");
+  } catch (err) {
+    console.error(err);
+    res.render(path.join("comps", "500.ejs"));
+  }
+});
+// @desc    Delete respuesta
+// @route   GET /delete/:id
+router.get("/respuestas/delete/:id", ensureAuth, async (req, res) => {
+  try {
+    await Respuesta.findByIdAndDelete({
+      _id: req.params.id,
+    });
+    res.redirect("back");
   } catch (err) {
     console.error(err);
     res.render(path.join("comps", "500.ejs"));
@@ -97,16 +117,39 @@ router.post("/stories", ensureAuth, async (req, res) => {
     res.render(path.join("comps", "500.ejs"));
   }
 });
+// @desc    Responder story
+// @route   POST /stories/respuesta
+router.post("/respuesta", ensureAuth, async (req, res) => {
+  try {
+    const respuesta = {
+      user: req.user.displayName,
+      idUser: req.user._id,
+      image: req.user.image,
+      bodyRespuesta: req.body.bodyRespuesta,
+      storyId: req.body.storyId,
+    };
+    await Respuesta.create(respuesta);
+    res.redirect(`/stories/${req.body.storyId}`);
+  } catch (err) {
+    console.error(err);
+    res.render(path.join("comps", "500.ejs"));
+  }
+});
 
-// @desc    Ver storys
+// @desc    Ver stories
 // @route   POST /stories
 router.get("/stories", ensureAuth, async (req, res) => {
   try {
     let uniqueId = req.user._id;
+    const respuestas = await Respuesta.find({});
     const stories = await Story.find({ status: "public" })
       .sort({ createdAdAt: "desc" })
       .lean();
-    res.render("allStories.ejs", { stories, uniqueId });
+    console.log("respuestas");
+    console.log(respuestas);
+    console.log("stories");
+    console.log(stories);
+    res.render("allStories.ejs", { stories, uniqueId, respuestas });
   } catch (err) {
     console.error(err);
     res.render(path.join("comps", "500.ejs"));
@@ -118,9 +161,10 @@ router.get("/stories", ensureAuth, async (req, res) => {
 router.get("/stories/:id", ensureAuth, async (req, res) => {
   try {
     let storyId = req.params.id;
+    const user = req.user;
     const story = await Story.findOne({ _id: storyId });
-    console.log(story);
-    res.render("viewStory.ejs", { story });
+    const respuestas = await Respuesta.find({ storyId: storyId });
+    res.render("viewStory.ejs", { story, respuestas, user });
   } catch (err) {
     console.error(err);
     res.render(path.join("comps", "500.ejs"));
