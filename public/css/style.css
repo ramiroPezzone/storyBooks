@@ -1,6 +1,21 @@
 p {
   margin: 10px 0 !important;
 }
+.grid-container-all-stories,
+.container-story-and-title,
+.container-stories-author {
+  font-family: "Alatsi", sans-serif;
+}
+.grid-container-all-stories p,
+.container-story-and-title p,
+.container-stories-author p {
+  font-size: 1.2rem;
+}
+.grid-container-all-stories h5,
+.container-story-and-title h5,
+.container-stories-author h5 {
+  font-size: 1.7rem;
+}
 .login-container {
   width: 400px;
   margin-top: 50px;
@@ -138,10 +153,9 @@ textarea {
 
 .grid-container-all-stories {
   width: 68%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   padding: 10px 0;
   margin: 0 auto;
+  height: auto;
 }
 .grid-item-all-stories {
   padding: 5px;
@@ -247,4 +261,13 @@ textarea {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+.container-fecha-creada-allStories {
+  text-align: right;
+}
+.container-fecha-creada-allStories p {
+  font-size: 0.9rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-style: italic;
 }

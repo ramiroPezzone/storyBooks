@@ -21,7 +21,7 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
     let user = req.user;
     let respuestas = await Respuesta.find({ idUser: user._id });
     let filtredStories = allStories.filter((story) => {
-        return story._id == "626a8044477a5e08e5b610dd";
+      return story._id == "626a8044477a5e08e5b610dd";
     });
     // console.log("filtredStories", filtredStories);
 
@@ -145,9 +145,9 @@ router.get("/stories", ensureAuth, async (req, res) => {
   try {
     let uniqueId = req.user._id;
     const respuestas = await Respuesta.find({});
-    const stories = await Story.find({ status: "public" })
-      .sort({ createdAdAt: "desc" })
-      .lean();
+    const stories = await Story.find({ status: "public" }).sort({
+      createAdAt: -1,
+    });
     res.render("allStories.ejs", { stories, uniqueId, respuestas });
   } catch (err) {
     console.error(err);
@@ -156,7 +156,7 @@ router.get("/stories", ensureAuth, async (req, res) => {
 });
 
 // @desc    Ver storys
-// @route   POST /stories
+// @route   GET /stories
 router.get("/stories/:id", async (req, res) => {
   try {
     let storyId = req.params.id;
@@ -174,7 +174,9 @@ router.get("/stories/:id", async (req, res) => {
 router.get("/stories/user/:id", ensureAuth, async (req, res) => {
   try {
     let authorId = req.params.id;
-    const stories = await Story.find({ user: authorId });
+    const stories = await Story.find({ user: authorId, status: "public" }).sort({
+      createAdAt: -1,
+    });
     res.render("storysUser.ejs", { stories });
   } catch (err) {
     console.error(err);

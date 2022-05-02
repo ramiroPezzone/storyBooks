@@ -33,6 +33,9 @@
             <img src="<%= story.image %>" alt="">
             <a href="/stories/user/<%= story.user %> "> <%= story.name %> </a>
           </div>
+          <div class="container-fecha-creada-allStories">
+            <p>Creada el: <%= story.createAdAt %></p>
+          </div>
         </div>
         <div class="card-action center-align">
           <a href="/stories/<%= story._id %>" class="btn grey">Leer más...</a>
