@@ -27,12 +27,17 @@
             <%= story.body %>
           </span>
         </div>
+        <% if (user !== undefined) { %>
         <div class="container-btn-responder">
           <%- include("./comps/btnResponder.ejs") %>
         </div>
         <div class="container-form-responder">
           <%- include("./comps/formResponder.ejs") %>
         </div>
+        <% } else {%>
+        <p>Debes iniciar sesión si quieres comentar la historia</p>
+
+        <% } %>
 
         <div class="container-contador-de-comentarios">
           <h5>Comentarios:</h5>

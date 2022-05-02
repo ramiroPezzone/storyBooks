@@ -15,10 +15,12 @@
     <div class="card-panel card-respuesta">
       <div class="container-btn-eliminar-respuesta">
 
+        <% if (user !== undefined) { %>
         <% if (resp.idUser == user._id) { %>
         <a class="btn-floating btn-large waves-effect waves-light red btn-eliminar-en-respuestas" href="/respuestas/delete/<%= resp._id %>">
           <i class=" material-icons">delete</i>
         </a>
+        <% } %>
         <% } %>
 
       </div>

@@ -18,15 +18,18 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
   try {
     let allStories = await Story.find({});
     let stories = await Story.find({ user: req.user.id }).lean();
-    let allUsers = await User.find({});
     let user = req.user;
     let respuestas = await Respuesta.find({ idUser: user._id });
+    let filtredStories = allStories.filter((story) => {
+        return story._id == "626a8044477a5e08e5b610dd";
+    });
+    // console.log("filtredStories", filtredStories);
+
     res.render("dashboard.ejs", {
       user,
       stories,
       respuestas,
       allStories,
-      allUsers,
     });
   } catch (err) {
     console.error(err);
@@ -145,10 +148,6 @@ router.get("/stories", ensureAuth, async (req, res) => {
     const stories = await Story.find({ status: "public" })
       .sort({ createdAdAt: "desc" })
       .lean();
-    console.log("respuestas");
-    console.log(respuestas);
-    console.log("stories");
-    console.log(stories);
     res.render("allStories.ejs", { stories, uniqueId, respuestas });
   } catch (err) {
     console.error(err);
@@ -158,7 +157,7 @@ router.get("/stories", ensureAuth, async (req, res) => {
 
 // @desc    Ver storys
 // @route   POST /stories
-router.get("/stories/:id", ensureAuth, async (req, res) => {
+router.get("/stories/:id", async (req, res) => {
   try {
     let storyId = req.params.id;
     const user = req.user;
