@@ -236,7 +236,8 @@ textarea {
   justify-content: space-between;
 }
 
-.container-fecha-respuesta {
+.container-fecha-respuesta,
+.container-timestamp-viewstory {
   text-align: right;
 }
 .container-contador-de-comentarios h6 {

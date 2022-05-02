@@ -27,6 +27,11 @@
             <%= story.body %>
           </span>
         </div>
+        <div class="container-timestamp-viewstory">
+          <p>
+            <%= story.createAdAt %>
+          </p>
+        </div>
         <% if (user !== undefined) { %>
         <div class="container-btn-responder">
           <%- include("./comps/btnResponder.ejs") %>
