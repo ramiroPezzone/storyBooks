@@ -65,23 +65,6 @@
 
   <%- include("./comps/scriptsMat.ejs") %>
 
-  <script>
-    const publicOpt = document.getElementById("public")
-    const privateOpt = document.getElementById("private")
-    const estadoDeHistoria = document.getElementById("estadoDeHistoria")
-
-    console.log("estadoDeHistoria.innerText", estadoDeHistoria.innerText);
-
-    if (estadoDeHistoria.innerText === "privada") {
-      privateOpt.setAttribute("selected", true)
-      privateOpt.classList.remove("selected")
-    } else {
-      publicOpt.setAttribute("selected", true)
-      privateOpt.classList.remove("selected")
-      publicOpt.style.color = "red"
-    }
-  </script>
-
 </body>
 
 </html>
