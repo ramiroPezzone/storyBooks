@@ -174,9 +174,11 @@ router.get("/stories/:id", async (req, res) => {
 router.get("/stories/user/:id", ensureAuth, async (req, res) => {
   try {
     let authorId = req.params.id;
-    const stories = await Story.find({ user: authorId, status: "public" }).sort({
-      createAdAt: -1,
-    });
+    const stories = await Story.find({ user: authorId, status: "public" }).sort(
+      {
+        createAdAt: -1,
+      }
+    );
     res.render("storysUser.ejs", { stories });
   } catch (err) {
     console.error(err);

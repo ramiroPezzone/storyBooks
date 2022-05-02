@@ -23,10 +23,15 @@
 
         <div class="row">
           <div class="input-field">
-            <p>(Si no seleccionas otro estado esta historia se mantendrá como <span id="estadoDeHistoria"></span>)</p>
+            <input type="hidden" value=<% uniqueStory.status %> id="hiddenStatus" />
             <select name="status" id="status">
+              <% if (uniqueStory.status === "private") { %>
+              <option value="private" id="private">Privada</option>
+              <option value="public" id="public">Pública</option>
+              <% } else { %>
               <option value="public" id="public">Pública</option>
               <option value="private" id="private">Privada</option>
+              <% } %>
             </select>
             <label for="title">Estado</label>
           </div>
@@ -56,24 +61,24 @@
     </div>
   </div>
 
-  <p id="storyStatus"><%= uniqueStory.status %></p>
 
 
   <%- include("./comps/scriptsMat.ejs") %>
 
   <script>
-    const privateOpt = document.getElementById("private")
     const publicOpt = document.getElementById("public")
-    const storyStatus = document.getElementById("storyStatus")
+    const privateOpt = document.getElementById("private")
     const estadoDeHistoria = document.getElementById("estadoDeHistoria")
-    if (storyStatus.innerText === "private") {
-      privateOpt.classList.add("selected")
-      publicOpt.classList.remove("selected")
-      estadoDeHistoria.innerText = "Privada"
-    } else {
+
+    console.log("estadoDeHistoria.innerText", estadoDeHistoria.innerText);
+
+    if (estadoDeHistoria.innerText === "privada") {
+      privateOpt.setAttribute("selected", true)
       privateOpt.classList.remove("selected")
-      publicOpt.classList.add("selected")
-      estadoDeHistoria.innerText = "Privada"
+    } else {
+      publicOpt.setAttribute("selected", true)
+      privateOpt.classList.remove("selected")
+      publicOpt.style.color = "red"
     }
   </script>
 
